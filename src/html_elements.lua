@@ -2,17 +2,26 @@
 
 
 local html = {}
+local tags = {"h1"}
 
-html.h1 =function(element) 
-  local props = ""
-  for var, val in pairs(element.props)do
-    props = props .. ('%s="%s" '):format(
-      var, val
+for _, tag in ipairs(tags) do
+  html[tag] = function(element)
+    local props = ""
+    for var, val in pairs(element.props)do
+      props = props .. ('%s="%s" '):format(
+        var, val
+      )
+    end
+    return ("<%s %s> %s </%s>")
+      :format(
+        tag,
+        props,
+        element.childrens:concat(" "),
+        tag
     )
   end
-  return ("<h1 %s> %s <h1>")
-    :format(
-      props,
-      element.childrens:concat(" ")
-  )
 end
+
+
+
+return html
