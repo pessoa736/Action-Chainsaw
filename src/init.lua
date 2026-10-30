@@ -1,7 +1,5 @@
-
-
 local ac = {
-  dlsx = require("dlsx"),
+	dlsx = require("dlsx"),
 }
 
 return ac
